@@ -136,6 +136,22 @@ session_start();
                                       ?></h5>
         <button type="submit" class="btn btn-primary">Finalizar proposta</button>
       </div>
+      <?php
+      $file = '../json/proposta.json';
+      //Para garantir que o nome do arquivo seja sempre o mesmo
+
+      $values = [];
+      foreach ($_SESSION as $key => $value) {
+        $values[$key] = strip_tags($value);
+      }
+      //Por questão de segurança, é importante filtrar os dados recebidos do formulário
+
+      $toJson = json_encode($values);
+      //Converte os dados para JSON
+
+      file_put_contents($file, $toJson);
+      //Adiciona as informações json ao arquivo
+      ?>
 
     </div>
   </main>
